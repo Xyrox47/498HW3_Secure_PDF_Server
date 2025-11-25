@@ -4,12 +4,11 @@ I chose to use SQLite3 to store metadata
 
 Each row contains:
 
-INT     Text            Text        Text  
 ID  |   filename    |   title   |   description
 
 Example:
 
-{
+{  
   "id": 1,  
   "filename": "Dryocampa_rubicunda.pdf",  
   "title": "Dryocampa rubicunda",  
