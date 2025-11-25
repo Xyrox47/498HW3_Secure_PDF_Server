@@ -1,23 +1,37 @@
+/*
+    This is pretty much the app.get section that was in server.js
+    copy pasted, but using the router function in express.
+*/
+
 const path = require('path');
 const express = require('express');
 
 module.exports = function createRouter(PDFDiscovery, PDFValidation) {
     const router = express.Router();
 
-    router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    try {
+        const PDFList = await PDFDiscovery.getPDFList();
+        
         res.render('home', {
-            title: 'TOTALLY NOT WILD WEST FORUM',
+            title: 'Rubicunda Fan Site',
             currentPage: 'home',
-
-            // isLoggedIn: req.session.isLoggedIn,
-            // username: req.session.username
+            PDFs: PDFList  // Add this
         });
-    });
+    } catch (error) {
+        console.error('Error loading PDFs:', error);
+        res.render('home', {
+            title: 'Rubicunda Fan Site',
+            currentPage: 'home',
+            PDFs: []  // Empty array on error
+        });
+    }
+});
 
-    router.get('/documennts', async (req, res) => {
+    router.get('/documents', async (req, res) => {
         const PDFList = await PDFDiscovery.getPDFList();
 
-        res.render('PDFs', {
+        res.render('documents', {
             title: "PDF Library",
             PDFs: PDFList
         });
@@ -32,7 +46,7 @@ module.exports = function createRouter(PDFDiscovery, PDFValidation) {
             return res.status(404).send("PDF not found");
         }
 
-        const filePath = path.join(__dirname, '..', 'PDFs', fileName);
+        const filePath = path.join(__dirname, '..', 'public', 'documents', fileName);   
 
         res.sendFile(filePath, (err) => {
             if (err) {

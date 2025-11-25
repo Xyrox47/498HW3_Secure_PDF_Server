@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style.css">
+    <style>
+        img {
+            width: 25%;
+            height: 25%;
+        }
+    </style>
+</head>
+<body>
+    {{> header}}
+    <main>
+        <h1>{{title}}</h1>
+        <h2>Available Documents</h2>
+        <div class="pdf-list">
+            {{#if PDFs}}
+                {{#each PDFs}}
+                <div class="pdf-item">
+                    <h3>{{this.title}}</h3>
+                    <p>{{this.description}}</p>
+                    <a href="/documents/{{this.filename}}" target="_blank">View PDF</a>
+                </div>
+                {{/each}}
+            {{else}}
+                <p>No documents available at this time.</p>
+            {{/if}}
+        </div>
+    </main>
+
+    {{> footer}}
+</body>
+</html>
+
