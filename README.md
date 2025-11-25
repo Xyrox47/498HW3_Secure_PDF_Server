@@ -1,3 +1,15 @@
+# Setup Instructions and Description
+
+This is a basic website made to serve PDF files and inform people about the rubicunda moth.
+It was setup with a domain purchased from squarespace, digitalocean name servers, Nginx Proxy
+Manager, and a SSL certificate through Let's Encrypt.
+
+To run server:
+1. Run "git clone https://github.com/Xyrox47/498HW3_Secure_PDF_Server.git"
+2. Enter my-nodejs-app folder in /498HW3_Secure_PDF_Server/my-nodejs-app/
+3. Run "docker compose -f docker-compose.yml up --build -d" To build and compose the server while detached
+4. Server is now running your ip address
+
 # Database Structure
 
 I chose to use SQLite3 to store metadata
